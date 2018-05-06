@@ -2,12 +2,14 @@ const puppeteer = require('puppeteer')
 const cheerio = require('cheerio')
 const CHROME_PATH = '/Applications/Chromium.app/Contents/MacOS/Chromium'
 
-const {VAL_ID, VAL_PW} = require('./config')
+const keytar = require('keytar')
+const SERVICE_NAME = 'com.meganii.apps.affi-search.valuecommerce'
 
 async function login (page) {
+  const secret = await keytar.findCredentials(SERVICE_NAME)
   await page.goto('https://aff.valuecommerce.ne.jp/')
-  await page.type('#login_form_emailAddress', VAL_ID)
-  await page.type('#login_form_encryptedPasswd', VAL_PW)
+  await page.type('#login_form_emailAddress', secret[0].account)
+  await page.type('#login_form_encryptedPasswd', secret[0].password)
   await page.click('body > div.container > div.row.login_btn_bsp > div > form > div:nth-child(5) > div > button')
 }
 

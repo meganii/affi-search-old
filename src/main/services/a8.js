@@ -1,14 +1,15 @@
 const puppeteer = require('puppeteer')
 const cheerio = require('cheerio')
+const keytar = require('keytar')
 const CHROME_PATH = '/Applications/Chromium.app/Contents/MacOS/Chromium'
-
-const {A8_ID, A8_PW} = require('./config')
+const SERVICE_NAME = 'com.meganii.apps.affi-search.a8'
 
 async function login (page) {
+  const secret = await keytar.findCredentials(SERVICE_NAME)
   await page.goto('https://a8.net')
-  await page.type('#asLoginId', A8_ID)
+  await page.type('#asLoginId', secret[0].account)
   await page.waitFor(1000)
-  await page.type('#headerLeft > form > ul > li.passInput > input[type="password"]', A8_PW)
+  await page.type('#headerLeft > form > ul > li.passInput > input[type="password"]', secret[0].password)
   await page.click('#headerLeft > form > ul > li.lgnBtn > input[type="image"]')
 }
 

@@ -1,11 +1,11 @@
 <template>
   <div id="wrapper">
-    <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
+    <h2>Affi Search</h2>
     <main>
-      <h2>Affi Search</h2>
       <ul>
         <li><router-link to="/selfback">Selfback Search</router-link></li>
         <li><router-link to="/affiliate">Affiliate Search</router-link></li>
+        <li><router-link to="/settings">Settings</router-link></li>
       </ul>
     </main>
   </div>

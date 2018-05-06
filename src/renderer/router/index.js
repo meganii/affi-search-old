@@ -21,6 +21,11 @@ export default new Router({
       component: require('@/components/AffiliatePage').default
     },
     {
+      path: '/settings',
+      name: 'settings-page',
+      component: require('@/components/SettingsPage').default
+    },
+    {
       path: '*',
       redirect: '/'
     }

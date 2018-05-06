@@ -1,8 +1,8 @@
 {
   "name": "affi-search",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "meganii <yuhei24@gmail.com>",
-  "description": "An electron-vue project",
+  "description": "Electron application for searching affiliate item",
   "license": "MIT",
   "main": "./dist/electron/main.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "build": {
     "productName": "affi-search",
-    "appId": "org.simulatedgreg.electron-vue",
+    "appId": "com.meganii.apps.affi-search",
     "directories": {
       "output": "build"
     },
@@ -61,6 +61,7 @@
     "cheerio": "^1.0.0-rc.2",
     "electron-log": "^2.2.14",
     "element-ui": "^2.2.1",
+    "keytar": "^4.2.1",
     "puppeteer": "^1.1.1",
     "vue": "^2.3.3",
     "vue-electron": "^1.0.6",
