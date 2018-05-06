@@ -81,25 +81,6 @@
         ipcRenderer.send('affisearch-a8', {keyword: this.keyword})
         ipcRenderer.send('affisearch-val', {keyword: this.keyword})
       },
-      // searchOld () {
-      //   const fnValuecommerce = async (keyword) => {
-      //     await valuecommerce(this.keyword).then(result => {
-      //       result.map(item => this.items.valuecommerce.push(item))
-      //     })
-      //   }
-
-      //   const tasks = [
-      //     fnValuecommerce(this.keyword)
-      //   ]
-
-      //   Promise.all(tasks).then((value) => {
-      //     console.log('end')
-      //     this.loading = false
-      //   }).catch(err => {
-      //     console.error(err)
-      //     this.loading = false
-      //   })
-      // },
       open (link) {
         this.$electron.shell.openExternal(link)
       },

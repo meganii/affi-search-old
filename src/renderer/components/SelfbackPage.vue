@@ -137,62 +137,6 @@
         ipcRenderer.send('affisearch-hapitas', {keyword: this.keyword})
         ipcRenderer.send('affisearch-valsb', {keyword: this.keyword})
       },
-      searchOld () {
-        // this.loading = true
-        // this.items = {
-        //   hapitas: [],
-        //   a8Sb: [],
-        //   valuecommerceSb: [],
-        //   epos: [],
-        //   accesstradeSb: []
-        // }
-
-        // const fnHapitas = async (keyword) => {
-        //   await hapitas(keyword).then(result => {
-        //     result.map(item => this.items.hapitas.push(item))
-        //   })
-        // }
-
-        // const fnA8Sb = async (keyword) => {
-        //   await a8Sb(keyword).then(result => {
-        //     result.map(item => this.items.a8Sb.push(item))
-        //   })
-        // }
-
-        // const fnEpos = async (keyword) => {
-        //   await epos(keyword).then(result => {
-        //     result.map(item => this.items.epos.push(item))
-        //   })
-        // }
-
-        // const fnValuecommerce = async (keyword) => {
-        //   await valuecommerceSb(keyword).then(result => {
-        //     result.map(item => this.items.valuecommerceSb.push(item))
-        //   })
-        // }
-
-        // const fnAccessTrade = async (keyword) => {
-        //   await accesstradeSb(this.keyword).then(result => {
-        //     result.map(item => this.items.accesstradeSb.push(item))
-        //   })
-        // }
-
-        // const tasks = [
-        //   fnHapitas(this.keyword),
-        //   fnA8Sb(this.keyword),
-        //   fnEpos(this.keyword),
-        //   fnValuecommerce(this.keyword),
-        //   fnAccessTrade(this.keyword)
-        // ]
-
-        // Promise.all(tasks).then((value) => {
-        //   console.log('end')
-        //   this.loading = false
-        // }).catch(err => {
-        //   console.error(err)
-        //   this.loading = false
-        // })
-      },
       open (link) {
         this.$electron.shell.openExternal(link)
       },
