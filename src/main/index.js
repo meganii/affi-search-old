@@ -1,13 +1,9 @@
 'use strict'
 
 import { app, BrowserWindow, ipcMain } from 'electron'
-import a8 from './services/a8'
-import a8sb from './services/a8_sb'
-import epos from './services/epos'
-import hapitas from './services/hapitas'
-import valuecommerceSb from './services/valuecommerce_sb'
-import valuecommerce from './services/valuecommerce'
 import logger from 'electron-log'
+import {AffinePancake} from 'affine-pancake'
+import keytar from 'keytar'
 
 /**
  * Set `__static` path to static files in production
@@ -58,7 +54,11 @@ app.on('activate', () => {
 ipcMain.on('affisearch-a8', async (event, arg) => {
   console.log(arg)
   logger.info('exec affi search')
-  const result = await a8(arg.keyword)
+  const secret = await keytar.findCredentials('com.meganii.apps.affi-search.a8')
+  const affine = await AffinePancake.bake('A8')
+  await affine.initialize()
+  await affine.login(secret[0].account, secret[0].password)
+  const result = await affine.search(arg.keyword)
   event.sender.send('affisearch-a8-reply', result)
   logger.info('done affi search')
 })
@@ -66,7 +66,11 @@ ipcMain.on('affisearch-a8', async (event, arg) => {
 ipcMain.on('affisearch-val', async (event, arg) => {
   console.log(arg)
   logger.info('exec val search')
-  const result = await valuecommerce(arg.keyword)
+  const secret = await keytar.findCredentials('com.meganii.apps.affi-search.valuecommerce')
+  const affine = await AffinePancake.bake('VALUECOMMERCE')
+  await affine.initialize()
+  await affine.login(secret[0].account, secret[0].password)
+  const result = await affine.search(arg.keyword)
   event.sender.send('affisearch-val-reply', result)
   logger.info('done val search')
 })
@@ -74,7 +78,11 @@ ipcMain.on('affisearch-val', async (event, arg) => {
 ipcMain.on('affisearch-a8sb', async (event, arg) => {
   console.log(arg)
   logger.info('exec a8sb search')
-  const result = await a8sb(arg.keyword)
+  const secret = await keytar.findCredentials('com.meganii.apps.affi-search.a8')
+  const affine = await AffinePancake.bake('A8SB')
+  await affine.initialize()
+  await affine.login(secret[0].account, secret[0].password)
+  const result = await affine.search(arg.keyword)
   event.sender.send('affisearch-a8sb-reply', result)
   logger.info('done a8sb search')
 })
@@ -82,7 +90,9 @@ ipcMain.on('affisearch-a8sb', async (event, arg) => {
 ipcMain.on('affisearch-epos', async (event, arg) => {
   console.log(arg)
   logger.info('exec epos search')
-  const result = await epos(arg.keyword)
+  const affine = await AffinePancake.bake('EPOS')
+  await affine.initialize()
+  const result = await affine.search(arg.keyword)
   event.sender.send('affisearch-epos-reply', result)
   logger.info('done epos search')
 })
@@ -90,7 +100,9 @@ ipcMain.on('affisearch-epos', async (event, arg) => {
 ipcMain.on('affisearch-hapitas', async (event, arg) => {
   console.log(arg)
   logger.info('exec hapitas search')
-  const result = await hapitas(arg.keyword)
+  const affine = await AffinePancake.bake('HAPITAS')
+  await affine.initialize()
+  const result = await affine.search(arg.keyword)
   event.sender.send('affisearch-hapitas-reply', result)
   logger.info('done hapitas search')
 })
@@ -98,7 +110,11 @@ ipcMain.on('affisearch-hapitas', async (event, arg) => {
 ipcMain.on('affisearch-valsb', async (event, arg) => {
   console.log(arg)
   logger.info('exec valsb search')
-  const result = await valuecommerceSb(arg.keyword)
+  const secret = await keytar.findCredentials('com.meganii.apps.affi-search.valuecommerce')
+  const affine = await AffinePancake.bake('VALUECOMMERCESB')
+  await affine.initialize()
+  await affine.login(secret[0].account, secret[0].password)
+  const result = await affine.search(arg.keyword)
   event.sender.send('affisearch-valsb-reply', result)
   logger.info('done valsb search')
 })
